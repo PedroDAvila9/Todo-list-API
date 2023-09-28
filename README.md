@@ -36,7 +36,7 @@ Este projeto é uma API simples para gerenciar uma lista de tarefas usando Cloju
   **Configuração do Projeto**
     Clone o Repositório:
     
-    git clone [URL_DO_SEU_REPOSITÓRIO]
+    git clone (https://github.com/PedroDAvila9/Todo-list-API.git)
 
 **Baixe as Dependências:**
 
