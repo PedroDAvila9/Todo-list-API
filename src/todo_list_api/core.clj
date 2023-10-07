@@ -1,5 +1,5 @@
 (ns todo-list-api.core
-  (:require [ring.middleware.json :refer [wrap-json-body]]
+  (:require [ring.middleware.json :refer [wrap-json-response wrap-json-params]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.cors :refer [wrap-cors]]
             [compojure.core :refer [defroutes GET POST ANY DELETE PUT]]
@@ -84,10 +84,13 @@
   (ANY "*" [] {:status 404 :body "Not Found"})) 
 
 (def app
-  (-> (wrap-json-body app-routes {:keywords? true})
-      (wrap-cors :access-control-allow-origin [#".*"]
+  (-> app-routes
+      wrap-json-params
+      wrap-json-response
+      (wrap-cors :access-control-allow-origin [#"http://localhost:3000"]
                  :access-control-allow-methods [:get :put :post :delete])
       (wrap-defaults site-defaults)))
+
 
 (defn -main []
   (insert-tasks)
